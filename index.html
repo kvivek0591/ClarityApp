@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CogniSwitch Clarity</title>
+    
+    <!-- Fonts: Newsreader (Serif), Inter (Sans), JetBrains Mono (Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS with "Intellectual Brutalism" Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: '#f4f4f0',
+              ink: '#272048',
+              electric: '#0808BA',
+              engineerRed: '#DC2626',
+              subtle: 'rgba(39,32,72,0.6)'
+            },
+            fontFamily: {
+              serif: ['Newsreader', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            borderRadius: {
+              DEFAULT: '0px',
+              'none': '0px',
+              'sm': '0px',
+              'md': '0px',
+              'lg': '0px',
+              'xl': '0px',
+              '2xl': '0px',
+              'full': '0px',
+            },
+            boxShadow: {
+              'hard': '8px 8px 0px 0px #272048',
+              'hard-sm': '4px 4px 0px 0px #272048',
+              'hard-xs': '2px 2px 0px 0px #272048',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #f4f4f0;
+        color: #272048;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Custom Scrollbar for that technical feel */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f4f4f0; 
+        border-left: 1px solid #272048;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #272048; 
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0808BA; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "zustand": "https://aistudiocdn.com/zustand@^5.0.3"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
