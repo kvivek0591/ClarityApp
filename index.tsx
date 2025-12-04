@@ -1540,16 +1540,171 @@ const AnalyzingScreen = ({ onComplete }: { onComplete: () => void }) => {
   );
 };
 
+// --- Landing Page ---
+
+const LandingPage = () => {
+  const [isAppLoaded, setIsAppLoaded] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-paper text-ink font-sans">
+      {/* Hero Section */}
+      <header className="border-b border-ink bg-paper">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-ink flex items-center justify-center text-paper font-serif italic font-bold text-lg">
+              C
+            </div>
+            <span className="font-serif text-xl font-bold tracking-tight">
+              COGNISWITCH <span className="font-normal italic text-electric">CLARITY</span>
+            </span>
+          </div>
+          <a
+            href="#demo"
+            className="font-mono text-xs uppercase tracking-wider px-4 py-2 border border-ink bg-ink text-paper hover:bg-electric hover:border-electric transition-all"
+          >
+            Try Demo
+          </a>
+        </div>
+      </header>
+
+      {/* Hero Content */}
+      <section className="border-b border-ink relative overflow-hidden">
+        {/* Background Grid */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
+             style={{ backgroundImage: 'linear-gradient(#272048 1px, transparent 1px), linear-gradient(90deg, #272048 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 relative z-10">
+          <div className="max-w-3xl">
+            <div className="font-mono text-xs uppercase tracking-widest text-electric mb-4 flex items-center gap-2">
+              <span className="w-8 h-px bg-electric"></span>
+              Enterprise AI Infrastructure
+            </div>
+
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.1] mb-6">
+              Resolve Document Conflicts with
+              <span className="block text-electric">Surgical Precision</span>
+            </h1>
+
+            <p className="font-sans text-lg md:text-xl text-ink/70 leading-relaxed mb-8 max-w-2xl">
+              CogniSwitch Clarity detects temporal inconsistencies, contradictions, and intra-document conflicts across your knowledge base—ensuring AI systems ingest only verified, coherent information.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mb-12">
+              <a
+                href="#demo"
+                className="font-mono text-sm uppercase tracking-wider px-8 py-4 border border-ink bg-ink text-paper hover:bg-electric hover:border-electric transition-all shadow-hard-sm hover:shadow-hard flex items-center gap-2"
+              >
+                Launch Interactive Demo
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <button className="font-mono text-sm uppercase tracking-wider px-8 py-4 border border-ink bg-transparent text-ink hover:bg-ink/5 transition-all">
+                Documentation
+              </button>
+            </div>
+
+            {/* Stats */}
+            <div className="flex gap-8 md:gap-12 pt-8 border-t border-ink/20">
+              <div>
+                <div className="font-mono text-3xl font-bold text-ink">3</div>
+                <div className="font-mono text-[10px] uppercase tracking-wider text-ink/50">Conflict Types</div>
+              </div>
+              <div>
+                <div className="font-mono text-3xl font-bold text-electric">100%</div>
+                <div className="font-mono text-[10px] uppercase tracking-wider text-ink/50">Audit Trail</div>
+              </div>
+              <div>
+                <div className="font-mono text-3xl font-bold text-ink">AI</div>
+                <div className="font-mono text-[10px] uppercase tracking-wider text-ink/50">Powered</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Demo Section */}
+      <section id="demo" className="bg-ink/5 border-b border-ink">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-3xl font-bold text-ink mb-2">Interactive Demo</h2>
+            <p className="font-mono text-xs uppercase tracking-wider text-ink/50">
+              Experience the full conflict resolution workflow
+            </p>
+          </div>
+
+          {/* App Embed Container */}
+          <div className="border border-ink bg-white shadow-hard overflow-hidden">
+            {/* Browser Chrome */}
+            <div className="bg-ink px-4 py-3 flex items-center gap-3 border-b border-ink">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 bg-engineerRed"></div>
+                <div className="w-3 h-3 bg-yellow-500"></div>
+                <div className="w-3 h-3 bg-green-500"></div>
+              </div>
+              <div className="flex-1 mx-4">
+                <div className="bg-paper/10 px-4 py-1.5 font-mono text-xs text-paper/60 max-w-md">
+                  clarity.cogniswitch.ai/app
+                </div>
+              </div>
+            </div>
+
+            {/* Iframe Container */}
+            <div className="relative" style={{ height: '700px' }}>
+              {!isAppLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-paper">
+                  <div className="text-center">
+                    <Loader2 className="w-8 h-8 animate-spin text-electric mx-auto mb-4" />
+                    <p className="font-mono text-xs uppercase tracking-wider text-ink/50">Loading Application...</p>
+                  </div>
+                </div>
+              )}
+              <iframe
+                src={window.location.origin + window.location.pathname}
+                className="w-full h-full border-0"
+                onLoad={() => setIsAppLoaded(true)}
+                title="CogniSwitch Clarity Demo"
+              />
+            </div>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-ink/40">
+              Demo credentials: Any username + any password
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-paper border-t border-ink">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-6 h-6 bg-ink flex items-center justify-center text-paper font-serif italic font-bold text-sm">
+              C
+            </div>
+            <span className="font-mono text-xs text-ink/60">
+              COGNISWITCH CLARITY — Enterprise AI Infrastructure
+            </span>
+          </div>
+          <div className="font-mono text-[10px] text-ink/40 uppercase">
+            Built for demonstration purposes
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
 // --- Main App ---
 
-const App = () => {
+const MainApp = () => {
   const { view, setView } = useStore();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
     <div className="min-h-screen bg-paper text-ink flex flex-col font-sans selection:bg-electric selection:text-white">
       <TopBar />
-      
+
       <div className="flex flex-1 relative overflow-hidden">
         {view === 'login' ? (
           <LoginScreen />
@@ -1558,12 +1713,12 @@ const App = () => {
             {view === 'dashboard' && (
               <Sidebar isOpen={sidebarOpen} toggle={() => setSidebarOpen(!sidebarOpen)} />
             )}
-            
+
             <main className="flex-1 flex flex-col relative overflow-y-auto">
               {view === 'upload' && (
                 <UploadScreen />
               )}
-              
+
               {view === 'analyzing' && (
                 <AnalyzingScreen onComplete={() => setView('dashboard')} />
               )}
@@ -1577,6 +1732,25 @@ const App = () => {
       </div>
     </div>
   );
+};
+
+// --- Router ---
+
+const App = () => {
+  const [route, setRoute] = useState(window.location.hash);
+
+  useEffect(() => {
+    const handleHashChange = () => setRoute(window.location.hash);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Show landing page at #landing, main app otherwise
+  if (route === '#landing') {
+    return <LandingPage />;
+  }
+
+  return <MainApp />;
 };
 
 const root = createRoot(document.getElementById('root')!);
