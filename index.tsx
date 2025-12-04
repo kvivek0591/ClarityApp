@@ -1659,7 +1659,7 @@ const LandingPage = () => {
                 </div>
               )}
               <iframe
-                src={window.location.origin + window.location.pathname}
+                src={window.location.origin + window.location.pathname + '#demo'}
                 className="w-full h-full border-0"
                 onLoad={() => setIsAppLoaded(true)}
                 title="CogniSwitch Clarity Demo"
@@ -1734,6 +1734,32 @@ const MainApp = () => {
   );
 };
 
+// --- Demo Mode App (skips login, shows dashboard with data) ---
+
+const DemoApp = () => {
+  const { setView, loadMockData } = useStore();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  // Auto-login and load demo data on mount
+  useEffect(() => {
+    useStore.setState({ currentUser: 'Demo User', view: 'dashboard' });
+    loadMockData();
+  }, [loadMockData]);
+
+  return (
+    <div className="min-h-screen bg-paper text-ink flex flex-col font-sans selection:bg-electric selection:text-white">
+      <TopBar />
+
+      <div className="flex flex-1 relative overflow-hidden">
+        <Sidebar isOpen={sidebarOpen} toggle={() => setSidebarOpen(!sidebarOpen)} />
+        <main className="flex-1 flex flex-col relative overflow-y-auto">
+          <ConflictWorkspace />
+        </main>
+      </div>
+    </div>
+  );
+};
+
 // --- Router ---
 
 const App = () => {
@@ -1745,9 +1771,14 @@ const App = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Show landing page at #landing, main app otherwise
+  // Show landing page at #landing
   if (route === '#landing') {
     return <LandingPage />;
+  }
+
+  // Show demo mode (no login, straight to dashboard) at #demo
+  if (route === '#demo') {
+    return <DemoApp />;
   }
 
   return <MainApp />;
