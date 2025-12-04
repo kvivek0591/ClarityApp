@@ -1737,14 +1737,32 @@ const MainApp = () => {
 // --- Demo Mode App (skips login, shows dashboard with data) ---
 
 const DemoApp = () => {
-  const { setView, loadMockData } = useStore();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
-  // Auto-login and load demo data on mount
+  // Initialize demo state before first render
   useEffect(() => {
-    useStore.setState({ currentUser: 'Demo User', view: 'dashboard' });
-    loadMockData();
-  }, [loadMockData]);
+    // Set demo user and view directly in store
+    useStore.setState({
+      currentUser: 'Demo User',
+      view: 'dashboard',
+      conflicts: MOCK_CONFLICTS,
+      selectedConflictId: MOCK_CONFLICTS[0].id
+    });
+    setIsReady(true);
+  }, []);
+
+  // Don't render until state is ready
+  if (!isReady) {
+    return (
+      <div className="min-h-screen bg-paper flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-electric mx-auto mb-4" />
+          <p className="font-mono text-xs uppercase tracking-wider text-ink/50">Loading Demo...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-paper text-ink flex flex-col font-sans selection:bg-electric selection:text-white">
